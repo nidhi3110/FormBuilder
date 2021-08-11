@@ -1,0 +1,23 @@
+<html>
+    <title> Home Page</title>
+    <body>
+
+        <h1> welcome to Blogs </h1>
+            <h2> user : {{user.first_name}} {{user.last_name}}</h2>
+
+            <form method="POST" action = {% url 'accounts:logout' %}>
+                {%csrf_token%}
+                <input type="submit" value="logout"> 
+            </form>
+            <h3> <a href = {% url 'surveys:create' %}> Create a new survey </a> </h3>
+        <ul>
+            {% for item in surveyList%}
+                <li> 
+                    <a href = "/survey/{{item.id}}"> {{item.title}}</a> 
+                    <a href = "/survey/stats/{{item.id}}">Statistics</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+    <title> hello </title>
+    <body>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+            {% endfor %}
+
+        {% endif %}
+        
+        {%if user.is_authenticated%}
+            <h4><a href="{% url 'list' %}"> HomePage </a></h4>
+        {% else %}
+            Want to create forms of your own???
+            <a href = " {% url 'accounts:signup' %}"> Signup </a>
+        {% endif%}
+        <h1> {{survey.title}} </h1>
+        <h2> survey by {{surveyOwner.first_name}} {{surveyOwner.last_name}}</h2>
+        <p> {{survey.description}}</p>
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            <input type = "submit" value ="Submit"> </input>
+        </form>
+
+
+    
+    </body>
+</html>
